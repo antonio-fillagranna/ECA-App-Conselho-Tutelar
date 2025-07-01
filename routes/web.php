@@ -6,17 +6,23 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/contato', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contato', [ContactController::class, 'submit'])->name('contact.submit');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    // TODO: retirar a rota '/dashboard', só consegui redireciona-la para about, mas não substitui-la
+    Route::get('/dashboard', function () {
+        return redirect()->route('about');
+    })->name('dashboard');
+    Route::get('/sobre', function () {
+        return view('about');
+    })->name('about');
+    Route::get('/eca', function () {
+        return view('eca');
+    })->name('eca.show'); 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
