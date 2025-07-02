@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatController; 
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -30,6 +31,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/quiz/submit', [QuizController::class, 'submitAnswer'])->name('quiz.submit');
     Route::get('/quiz/result', [QuizController::class, 'result'])->name('quiz.result');
     Route::get('/leaderboard', [App\Http\Controllers\LeaderboardController::class, 'index'])->name('leaderboard');
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+    Route::post('/chat/ask-ia', [ChatController::class, 'askIa'])->name('chat.ask-ia');
 });
 
 require __DIR__.'/auth.php';

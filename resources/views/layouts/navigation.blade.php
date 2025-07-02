@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
                         {{ __('Leaderboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('chat.index')" :active="request()->routeIs('chat.index')">
+                        {{ __('Chat ECA') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -96,6 +99,10 @@
             {{-- SEU LINK "QUIZ DO ECA" --}}
             <x-responsive-nav-link :href="route('quiz.start')" :active="request()->routeIs('quiz.start')">
                 {{ __('Quiz do ECA') }}
+            </x-responsive-nav-link>
+                        {{-- SEU LINK "LEADERBOARD" --}}
+            <x-responsive-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
+                {{ __('Leaderboard') }}
             </x-responsive-nav-link>
         </div>
 
