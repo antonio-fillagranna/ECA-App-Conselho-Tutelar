@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/quiz/start', [QuizController::class, 'start'])->name('quiz.start');
     Route::post('/quiz/submit', [QuizController::class, 'submitAnswer'])->name('quiz.submit');
     Route::get('/quiz/result', [QuizController::class, 'result'])->name('quiz.result');
+    Route::get('/leaderboard', [App\Http\Controllers\LeaderboardController::class, 'index'])->name('leaderboard');
 });
 
 require __DIR__.'/auth.php';

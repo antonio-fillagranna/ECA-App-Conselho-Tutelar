@@ -71,7 +71,14 @@ class QuizController extends Controller
     {
         $score = Session::get('score', 0);
         $totalQuestions = count(Session::get('quiz_questions', []));
-        Session::forget(['quiz_questions', 'current_question_index', 'score', 'current_question_ids']); // Limpa a sessão
-        return view('quiz.result', compact('score', 'totalQuestions'));
+        if (auth()->check()) {
+            \App\Models\Score::create([ // Use o namespace completo ou importe o modelo
+                'user_id' => auth()->id(),
+                'score' => $score,
+                'total_questions' => $totalQuestions,
+            ]);
+        }
+    Session::forget(['quiz_questions', 'current_question_index', 'score', 'current_question_ids']); // Limpa a sessão
+    return view('quiz.result', compact('score', 'totalQuestions'));
     }
 }

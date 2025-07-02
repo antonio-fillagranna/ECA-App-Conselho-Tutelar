@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('quiz.start')" :active="request()->routeIs('quiz.start')">
                         {{ __('Quiz do ECA') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
+                        {{ __('Leaderboard') }}
+                    </x-nav-link>
                 </div>
             </div>
 
